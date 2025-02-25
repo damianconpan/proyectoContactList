@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import useGlobalReducer from "../hooks/useGlobalReducer";  // Custom hook for accessing the global state.
 
 export const Demo = () => {
-  // Accedemos al estado global si lo necesitas
-  const { store, dispatch } = useGlobalReducer();
 
-  // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -14,10 +10,8 @@ export const Demo = () => {
     address: ""
   });
 
-  // Estado para controlar el mensaje de contacto creado
   const [contactCreated, setContactCreated] = useState(false);
 
-  // Función para actualizar el estado según el input modificado
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({
@@ -26,7 +20,6 @@ export const Demo = () => {
     });
   };
 
-  // Función que hace el POST a la API utilizando los datos del formulario
   const createContact = async (contactData) => {
     try {
       const response = await fetch("https://playground.4geeks.com/contact/agendas/damian/contacts", {
@@ -43,7 +36,6 @@ export const Demo = () => {
       
       const data = await response.json();
       console.log("Contacto creado:", data);
-      // Retornamos true para indicar que se creó el contacto
       return true;
     } catch (error) {
       console.log(error);
@@ -51,14 +43,11 @@ export const Demo = () => {
     }
   };
 
-  // Al enviar el formulario, se llama a createContact pasando los datos ingresados.
   const handleSubmit = async (event) => {
     event.preventDefault();
     const created = await createContact(formData);
     if (created) {
-      // Mostramos el mensaje de éxito
       setContactCreated(true);
-      // Limpiamos los inputs volviendo a los valores iniciales
       setFormData({
         name: "",
         phone: "",

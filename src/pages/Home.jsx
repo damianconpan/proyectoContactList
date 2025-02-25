@@ -13,7 +13,6 @@ export const Home = () => {
         },
       });
       const data = await response.json();
-      // Puedes hacer algo con data si lo necesitas
     } catch (error) {
       console.log(error);
     }
@@ -28,11 +27,9 @@ export const Home = () => {
         },
       });
       if (response.ok) {
-        // Opción 1: Volver a obtener la lista actualizada
         await getAgenda();
         
-        // Opción 2: Actualizar localmente filtrando el contacto eliminado
-        // dispatch({ type: "REMOVE_CONTACT", payload: contactId });
+
       }
     } catch (error) {
       console.log(error);
@@ -81,7 +78,7 @@ export const Home = () => {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body position-relative">
-                    {/* Botón para eliminar el contacto */}
+                    
                     <button
                       onClick={() => deleteContact(contact.id)}
                       className="btn btn-danger btn-sm position-absolute top-0 end-0 m-2"
